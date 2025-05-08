@@ -3,9 +3,9 @@ using JuMP, GLPK, LinearAlgebra
 include("q6_setup1.jl")
 
 # dual variables from master problem:
-# it 1:
-piVal = [0.0; 0.0; 0.0;;]
-kappa = [8.0, 4.0]
+# it 2:
+piVal = [0.0; -0.83333; 0.0;;]
+kappa = [8.0, 10.666]
 
 for k=1:K
     sub = Model(GLPK.Optimizer)

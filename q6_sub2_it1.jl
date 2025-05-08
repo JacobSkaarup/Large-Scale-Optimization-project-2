@@ -1,6 +1,6 @@
 using JuMP, GLPK, LinearAlgebra
 
-include("q6_setup1.jl")
+include("q6_setup2.jl")
 
 # dual variables from master problem:
 # it 1:
@@ -20,7 +20,7 @@ for k=1:K
     @constraint(sub, [con=4:6], dot(A_V[k][con,:], sub_variables) <= b_sub[k][con] )
     
     if k == 2
-        @constraint(sub, [con=7:7], dot(A_V[k][con,:], sub_variables) <= b_sub[k][con] )
+        @constraint(sub, [con=7:7], dot(A_V[k][con,:], sub_variables) >= b_sub[k][con] )
     end
     optimize!(sub)
 
