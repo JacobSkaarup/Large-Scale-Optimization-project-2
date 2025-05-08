@@ -22,7 +22,7 @@ lambda = [lambda1, lambda2]
 
 @objective(master, Min, sum(dot(CV[k]*X[k], lambda[k]) for k=1:K))
 @constraint(master, cons, sum(A0_V[k]*X[k]*lambda[k] for k=1:K ) .<= b0 )
-@constraint(master, convexityCons[k=1:K], sum(lambda[k][j] for j=1:P[k]) == 1)
+@constraint(master, convexityCons[k=1:K], sum(lambda[k][j] for j=1:P[k]) >= 1)
 
 optimize!(master)
 

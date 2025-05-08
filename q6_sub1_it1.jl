@@ -1,5 +1,3 @@
-using JuMP, GLPK, LinearAlgebra
-
 include("q6_setup1.jl")
 
 # dual variables from master problem:
@@ -30,5 +28,6 @@ for k=1:K
         println("x: ", JuMP.value.(sub_variables))
     else
         println("Optimize was not succesful. Return code: ", termination_status(sub))
+
     end
 end

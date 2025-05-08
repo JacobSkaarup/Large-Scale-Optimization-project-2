@@ -11,7 +11,7 @@ function CLSP(model_type)
     M1 = C - minimum(q)
     M2 = M1 
     M3 = 0
-    for i in 1:size(d, 1)
+    for i in axes(d, 1)
         M3 = max(M3, sum(d[i, :]))
     end
 
@@ -24,12 +24,12 @@ function CLSP(model_type)
     # Define variables
     if model_type == "ip" 
         @variable(model, y[1:n, 1:m], Bin) # Product i is produced in time t 
-        @variable(model, 0 <= x[1:n, 1:m], Int) # Number of product i produced in time t
-        @variable(model, 0 <= s[1:n, 1:m], Int) # Number of product i stored at end of time t
+        @variable(model, 0 <= x[1:n, 1:m] <= M2, Int) # Number of product i produced in time t
+        @variable(model, 0 <= s[1:n, 1:m] <= M3, Int) # Number of product i stored at end of time t
     elseif model_type == "lp"
         @variable(model, 0 <= y[1:n, 1:m] <= 1) # Product i is produced in time t 
-        @variable(model, 0 <= x[1:n, 1:m]) # Number of product i produced in time t
-        @variable(model, 0 <= s[1:n, 1:m]) # Number of product i stored at end of time t
+        @variable(model, 0 <= x[1:n, 1:m] <= M2) # Number of product i produced in time t
+        @variable(model, 0 <= s[1:n, 1:m] <= M3) # Number of product i stored at end of time t
     end
 
     # Define objective function
