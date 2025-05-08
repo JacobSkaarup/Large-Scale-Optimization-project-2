@@ -41,6 +41,18 @@ function CLSP(model_type)
     @constraint(model, [i=1:n, t=1:m], x[i,t] <= M1 * y[i,t]) # Production allowed only if y[i,t] = 1
     @constraint(model, [t=1:m], sum(x[i,t] + q[i] * y[i,t] for i in 1:n) <= C) # Capacity constraint
 
+
+    # x_hat = [8 0 4 ;
+    #         0 7 0 ]
+    # y_hat = [1 0 1 ;
+    #         0 1 0 ]
+    # s_hat = [5 1 0 ;
+    #          0 2 0]
+
+    # @constraint(model, [i=1:n, t=1:m], x[i,t] == x_hat[i,t])
+    # @constraint(model, [i=1:n, t=1:m], y[i,t] == y_hat[i,t])
+    # @constraint(model, [i=1:n, t=1:m], s[i,t] == s_hat[i,t])
+
     # Optimize model
     optimize!(model)
 
