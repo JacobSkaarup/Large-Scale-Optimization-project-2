@@ -1,4 +1,4 @@
-# module CLSP_master
+module CLSP_master
 # This is the master problem for the CLSP problem
 
 using JuMP, GLPK, LinearAlgebra
@@ -27,7 +27,7 @@ lambda = [lambda1, lambda2]
 
 @objective(master, Min, sum(dot(CV[k]*X[k], lambda[k]) for k=1:K))
 @constraint(master, cons, sum(A0_V[k]*X[k]*lambda[k] for k=1:K ) .<= b0 )
-@constraint(master, convexityCons[k=1:K], sum(lambda[k][j] for j=1:P[k]) == 1)
+@constraint(master, convexityCons[k=1:K], sum(lambda[k][j] for j=1:P[k]) >= 1)
 
 optimize!(master)
 
@@ -41,8 +41,8 @@ else
     println("Optimize was not succesful. Return code: ", termination_status(master))
 end
 
-print(">Converted solutions\n")
-print(round.(X[1] * value.(lambda[1]), sigdigits=2), "\n")
-print(round.(X[2] * value.(lambda[2]), sigdigits=2))
+println(">Converted solutions")
+println(round.(X[1] * value.(lambda[1]), sigdigits=3))
+println(round.(X[2] * value.(lambda[2]), sigdigits=3))
 
-# end
+end
