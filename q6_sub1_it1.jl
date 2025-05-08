@@ -1,3 +1,4 @@
+using JuMP, GLPK, LinearAlgebra
 include("q6_setup1.jl")
 
 # dual variables from master problem:

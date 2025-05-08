@@ -1,4 +1,4 @@
-using JuMP, Gurobi
+using JuMP, GLPK
 
 function CLSP(model_type)
     # Define parameters
@@ -18,8 +18,8 @@ function CLSP(model_type)
     n, m = size(d) # Number of products
 
     # Create a model
-    model = Model(Gurobi.Optimizer)
-    set_optimizer_attribute(model, "outputflag", 0) # Suppress Gurobi output
+    model = Model(GLPK.Optimizer)
+    # set_optimizer_attribute(model, "outputflag", 0) # Suppress Gurobi output
 
     # Define variables
     if model_type == "ip" 

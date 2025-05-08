@@ -38,8 +38,11 @@ else
     println("Optimize was not succesful. Return code: ", termination_status(master))
 end
 
-end
 
 print(">Converted solutions\n")
 print(round.(X[1] * value.(lambda[1]), sigdigits=2), "\n")
 print(round.(X[2] * value.(lambda[2]), sigdigits=2))
+
+
+end
+

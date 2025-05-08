@@ -1,11 +1,11 @@
 using JuMP, GLPK, LinearAlgebra
 
-include("q6_setup2.jl")
+include("q6_setup1.jl")
 
 # dual variables from master problem:
-# it 1:
-piVal = [0.0; 0.0; 0.0;;]
-kappa = [8.0, 6.0]
+# it 4:
+piVal = [0.0; -0.5; 0.0;;]
+kappa = [6.0, 8.0]
 
 for k=1:K
     sub = Model(GLPK.Optimizer)
@@ -20,7 +20,7 @@ for k=1:K
     @constraint(sub, [con=4:6], dot(A_V[k][con,:], sub_variables) <= b_sub[k][con] )
     
     if k == 2
-        @constraint(sub, [con=7:7], dot(A_V[k][con,:], sub_variables) >= b_sub[k][con] )
+        @constraint(sub, [con=7:7], dot(A_V[k][con,:], sub_variables) <= b_sub[k][con] )
     end
     optimize!(sub)
 
