@@ -10,6 +10,10 @@ M1 = Capacity - minimum(q)
 M2 = Capacity - minimum(q)
 M3 = maximum(sum(d[nn,mm] for mm in 2:m) for nn in 1:n) # Maximum demand for product i at time j
 
+senses = ["eq"; "eq"; "eq"; "leq"; "leq"; "leq";
+          "eq"; "eq"; "eq"; "leq"; "leq"; "leq";
+          "eq"; "eq"; "eq";]
+
 C = [0 0 0 0 0 0 costs[1] costs[1] costs[1] costs[2] costs[2] costs[2] h[1] h[1] h[1] h[2] h[2] h[2]] # Cost vector
 b = [d[1,1]; d[1,2]; d[1,3]; 0; 0; 0; d[2,1]; d[2,2]; d[2,3]; 0; 0; 0; Capacity; Capacity; Capacity] # Right-hand side vector
 n_vars = length(C) # Number of variables

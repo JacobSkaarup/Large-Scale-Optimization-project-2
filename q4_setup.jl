@@ -15,14 +15,17 @@ V[2] = [4, 5, 6, 10, 11, 12, 16, 17, 18]
 
 A0 = A[masterRows,:]
 b0 = b[masterRows,:]
+senses0 = senses[masterRows,:]
 
 CV = Vector{Array{Float64,2}}(undef,K)
 A_V = Vector{Array{Float64,2}}(undef,K)
 A0_V = Vector{Array{Float64,2}}(undef,K)
 b_sub = Vector{Array{Float64,2}}(undef,K)
+senses_sub = Vector{Array{String}}(undef,K)
 for k=1:K
     CV[k] = C[:,V[k]]
     A_V[k] = A[subBlocks[k],V[k]]
     A0_V[k] = A0[:,V[k]]
     b_sub[k] = b[subBlocks[k],:]
+    senses_sub[k] = senses[subBlocks[k],:]
 end

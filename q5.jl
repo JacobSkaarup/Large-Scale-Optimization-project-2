@@ -40,7 +40,7 @@ function CLSP(model_type)
     @constraint(model, [i=1:n, t=2:m], s[i,t-1] + x[i,t] == d[i,t] + s[i,t]) # Stock balance
     @constraint(model, [i=1:n, t=1:m], x[i,t] <= M1 * y[i,t]) # Production allowed only if y[i,t] = 1
     @constraint(model, [t=1:m], sum(x[i,t] + q[i] * y[i,t] for i in 1:n) <= C) # Capacity constraint
-
+    println("constraint types: ", model.consType)
     # Optimize model
     optimize!(model)
 

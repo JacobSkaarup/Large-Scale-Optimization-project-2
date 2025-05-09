@@ -8,9 +8,16 @@ function solveSubs(piVal, kappa)
         sub_variables = [x; y; s]
     
         @objective(sub, Min, dot(CV[k], sub_variables) - dot(piVal' * A0_V[k], sub_variables) - kappa[k])
-        @constraint(sub, [con=1:3], dot(A_V[k][con,:], sub_variables) == b_sub[k][con] )
-        @constraint(sub, [con=4:6], dot(A_V[k][con,:], sub_variables) <= b_sub[k][con] )
-    
+        for con in axes(A_V[k],1)
+            if senses_sub[k][con] == "eq"
+                @constraint(sub, dot(A_V[k][con,:], sub_variables) == b_sub[k][con] )
+            elseif senses_sub[k][con] == "leq"
+                @constraint(sub, dot(A_V[k][con,:], sub_variables) <= b_sub[k][con] )
+            else
+                @constraint(sub, dot(A_V[k][con,:], sub_variables) >= b_sub[k][con] )
+            end
+        end
+        
         optimize!(sub)
     
         if termination_status(sub) == MOI.OPTIMAL
