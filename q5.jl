@@ -44,7 +44,7 @@ function CLSP(model_type)
 
     # x_hat = [8 0 4 ;
     #         0 7 0 ]
-    # y_hat = [1 0 1 ;
+    # y_hat = [1 1 1 ;
     #         0 1 0 ]
     # s_hat = [5 1 0 ;
     #          0 2 0]

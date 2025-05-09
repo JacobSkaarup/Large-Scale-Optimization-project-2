@@ -1,10 +1,11 @@
 using JuMP, GLPK, LinearAlgebra
-include("q6_setup1.jl")
+
+include("q6_setup2.jl")
 
 # dual variables from master problem:
-# it 1:
-piVal = [0.0; 0.0; 0.0;;]
-kappa = [8.0, 4.0]
+# it 4:
+piVal = [0.0; -0.8333333333333339; -0.33333333333333354;;]
+kappa = [10.33333333333334, 10.666666666666671]
 
 for k=1:K
     sub = Model(GLPK.Optimizer)
@@ -19,7 +20,10 @@ for k=1:K
     @constraint(sub, [con=4:6], dot(A_V[k][con,:], sub_variables) <= b_sub[k][con] )
     
     if k == 1
-        @constraint(sub, [con=7:7], dot(A_V[k][con,:], sub_variables) <= b_sub[k][con] )
+        @constraint(sub, [con=7:7], dot(A_V[k][con,:], sub_variables) >= b_sub[k][con] )
+        open("model.lp", "w") do f
+            print(f, sub)
+        end
     end
     optimize!(sub)
 
@@ -29,6 +33,5 @@ for k=1:K
         println("x: ", JuMP.value.(sub_variables))
     else
         println("Optimize was not succesful. Return code: ", termination_status(sub))
-
     end
 end

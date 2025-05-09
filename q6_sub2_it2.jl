@@ -4,8 +4,8 @@ include("q6_setup2.jl")
 
 # dual variables from master problem:
 # it 2:
-piVal =  [0.0; -0.6923076923076923; -0.8461538461538461;;]
-kappa =  [13.076923076923077, 12.384615384615383]
+piVal =  [0.0; -1.5; 0.0;;]
+kappa =  [12.0, 16.0]
 
 for k=1:K
     sub = Model(GLPK.Optimizer)
@@ -19,8 +19,11 @@ for k=1:K
     @constraint(sub, [con=1:3], dot(A_V[k][con,:], sub_variables) == b_sub[k][con] )
     @constraint(sub, [con=4:6], dot(A_V[k][con,:], sub_variables) <= b_sub[k][con] )
     
-    if k == 2
+    if k == 1
         @constraint(sub, [con=7:7], dot(A_V[k][con,:], sub_variables) >= b_sub[k][con] )
+        open("model.lp", "w") do f
+            print(f, sub)
+        end
     end
     optimize!(sub)
 
