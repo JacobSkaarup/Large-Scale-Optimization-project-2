@@ -23,7 +23,7 @@ function solveSubs(piVal, kappa)
         if termination_status(sub) == MOI.OPTIMAL
             println("--- Result from sub-problem $k: ---")
             println("Objective value: ", JuMP.objective_value(sub))
-            println("x: ", JuMP.value.(sub_variables))
+            println("x: ", round.(JuMP.value.(sub_variables), sigdigits=3))
         else
             println("Optimize was not succesful. Return code: ", termination_status(sub))
         end

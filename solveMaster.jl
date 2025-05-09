@@ -18,8 +18,8 @@ function solveMaster(X)
         println("Objective value: ", JuMP.objective_value(master))
         lambdaVal = [JuMP.value.(lambda[k]) for k=1:K]
         println("lambda: ", lambdaVal)
-        println("piVal = ", dual.(cons))
-        println("kappa = ", dual.(convexityCons))
+        println("piVal = ", round.(dual.(cons), sigdigits=5))
+        println("kappa = ", round.(dual.(convexityCons), sigdigits=5))
     else
         println("Optimize was not succesful. Return code: ", termination_status(master))
     end
