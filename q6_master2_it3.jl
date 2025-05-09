@@ -7,14 +7,11 @@ include("q6_setup2.jl")
 
 # X[k] Extreme points for polyhedron k
 X = Vector{Array{Int64,2}}(undef,K)
-X[1] = hcat([8 0 4 1 0 1 5 1 0]',
-             reshape([3.0, 4.0, 5.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0] , 9, 1),
-             reshape([7.0, 0.0, 5.0, 1.0, 0.0, 1.0, 4.0, 0.0, 0.0] , 9, 1)) # Provide initial extreme points for polyhedron 1
-X[2] = hcat([0 7 0 0 1 1 0 2 0]',
-             reshape([0.0, 5.0, 4.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0] , 9, 1))# Provide initial extreme points for polyhedron 2
+X[1] = hcat([5 2 5 1 1 1 2 0 0]', [3.0, 4.0, 5.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0], [7.0, 0.0, 5.0, 1.0, 0.0, 1.0, 4.0, 0.0, 0.0])
+X[2] = hcat([0 5 2 0 1 1 0 0 0]', [0.0, 5.0, 4.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0], [5.0, 0.0, 4.0, 1.0, 0.0, 1.0, 5.0, 0.0, 0.0])
 
 # P[k] number of extreme points for polyhedron k
-P = [3, 2]
+P = [3, 3]
 
 master = Model(GLPK.Optimizer)
 

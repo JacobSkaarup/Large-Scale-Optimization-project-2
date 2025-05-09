@@ -7,10 +7,8 @@ include("q6_setup1.jl")
 
 # X[k] Extreme points for polyhedron k
 X = Vector{Array{Int64,2}}(undef,K)
-X[1] = hcat([8 0 4 1 0 1 5 1 0]', 
-            reshape([3.0, 4.0, 5.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0] , 9, 1),
-            reshape([7.0, 0.0, 5.0, 1.0, 0.0, 1.0, 4.0, 0.0, 0.0] , 9, 1)) # Provide initial extreme points for polyhedron 1
-X[2] = [0 7 0 0 1 0 0 2 0]' # Provide initial extreme points for polyhedron 2
+X[1] = hcat([8 0 4 1 0 1 5 1 0]', [3.0, 4.0, 5.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0], [7.0, 0.0, 5.0, 1.0, 0.0, 1.0, 4.0, 0.0, 0.0]) # Provide initial extreme points for polyhedron 1
+X[2] =      [0 7 0 0 1 0 0 2 0]' # Provide initial extreme points for polyhedron 2
 
 # P[k] number of extreme points for polyhedron k
 P = [3, 1]
@@ -38,11 +36,9 @@ else
     println("Optimize was not succesful. Return code: ", termination_status(master))
 end
 
-
 print(">Converted solutions\n")
 print(round.(X[1] * value.(lambda[1]), sigdigits=2), "\n")
 print(round.(X[2] * value.(lambda[2]), sigdigits=2))
 
 
 end
-

@@ -4,8 +4,8 @@ include("q6_setup2.jl")
 
 # dual variables from master problem:
 # it 2:
-piVal =  [0.0; -0.6923076923076923; -0.8461538461538461;;]
-kappa =  [13.076923076923077, 12.384615384615383]
+piVal =  [0.0; -0.9999999999999999; 0.0;;]
+kappa =  [9.0, 10.0]
 
 for k=1:K
     sub = Model(GLPK.Optimizer)

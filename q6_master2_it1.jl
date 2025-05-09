@@ -7,8 +7,11 @@ include("q6_setup2.jl")
 
 # X[k] Extreme points for polyhedron k
 X = Vector{Array{Int64,2}}(undef,K)
-X[1] = hcat([8 0 4 1 0 1 5 1 0]') # Provide initial extreme points for polyhedron 1
-X[2] =      [0 7 0 0 1 1 0 2 0]' # Provide initial extreme points for polyhedron 2
+# X[1] = hcat([8 0 4 1 0 1 5 1 0]') # Provide initial extreme points for polyhedron 1
+# X[2] =      [0 7 0 0 1 1 0 2 0]' # Provide initial extreme points for polyhedron 2
+X[1] = [8 0 4 1 0 1 5 1 0]'
+X[2] = [0 7 0 0 1 1 0 2 0]'
+
 
 # P[k] number of extreme points for polyhedron k
 P = [1, 1]
