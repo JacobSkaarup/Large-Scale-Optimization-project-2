@@ -5,6 +5,6 @@ include("solveSubs.jl")
 
 # dual variables from master problem:
 piVal = [0.0; 0.0; 0.0;;]
-kappa = [8.0, 6.0]
+kappa = [5.0, 4.0]
 
 solveSubs(piVal, kappa)

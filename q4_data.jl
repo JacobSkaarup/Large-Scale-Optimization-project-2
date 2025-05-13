@@ -2,7 +2,7 @@ h = [1 1] # Holding cost
 costs = [1 2] # Setup cost
 Capacity = 10 # Capacity
 q = [2 1] # Setup capacity need - equivalent
-d = [3 4 5; 0 5 4] # Demand matrix (for product i at time j - indexed by [i,j])
+d = [3 4 5; 0 5 2] # Demand matrix (for product i at time j - indexed by [i,j])
 
 n, m = size(d) # Number of products and time periods
 
