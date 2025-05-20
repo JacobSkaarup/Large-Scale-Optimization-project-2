@@ -19,7 +19,6 @@ function CLSP(model_type)
 
     # Create a model
     model = Model(GLPK.Optimizer)
-    # set_optimizer_attribute(model, "outputflag", 0) # Suppress Gurobi output
 
     # Define variables
     if model_type == "ip" 
